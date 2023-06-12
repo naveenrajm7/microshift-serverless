@@ -1,0 +1,115 @@
+---
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  vars_prompt:
+    - name: username
+      prompt: What is your redhat username?
+      private: false
+    - name: password
+      prompt: What is your redhat password?
+
+  tasks:
+    - name: Register as user (joe_user) with password (somepass) and auto-subscribe to available content.
+      community.general.redhat_subscription:
+        state: present
+        username: "{{ username }}"
+        password: "{{ password }}"
+        auto_attach: true
+
+    # Manage Repos
+    - name: Run command 
+      ansible.builtin.command: subscription-manager config --rhsm.manage_repos=1
+
+    - name: Install the latest version of Firewall and lvm2
+      ansible.builtin.dnf:
+        name:
+          - firewalld
+          - lvm2
+        state: latest
+
+    # Create Disk, Volume, Volume group
+    - name: Create a new primary partition for LVM
+      community.general.parted:
+        device: /dev/nvme1n1
+        number: 1
+        flags: [ lvm ]
+        state: present
+
+    - name: Create a volume group 
+      community.general.lvg:
+        vg: rhel
+        pvs: /dev/nvme1n1p1
+        pvresize: true
+
+    # Start firewall
+    - name: Make sure a service unit is running and enabled
+      ansible.builtin.systemd:
+        state: started
+        name: firewalld
+        enabled: true
+
+    # Config
+    - name: Configure firewall
+      ansible.posix.firewalld:
+        source: 10.42.0.0/16
+        zone: trusted
+        state: enabled
+        permanent: true
+        immediate: true
+
+    - name: Configure firewall
+      ansible.posix.firewalld:
+        source: "169.254.169.1"
+        zone: trusted
+        state: enabled
+        permanent: true
+        immediate: true
+
+    # Enable microshift packages
+    - name: Enable a RHSM repository
+      community.general.rhsm_repository:
+        name: 
+          - rhocp-4.13-for-rhel-9-aarch64-rpms
+          - fast-datapath-for-rhel-9-aarch64-rpms
+
+    # Install microshift packages
+    - name: Install the Microshift and Openshift-Clients
+      ansible.builtin.dnf:
+        name:
+          - microshift
+          - openshift-clients
+        state: latest
+
+    # Daemon Reload
+    - name: Just force systemd to reread configs (2.4 and above)
+      ansible.builtin.systemd:
+        daemon_reload: true
+
+    #  copy pull secret
+    - name: Copy secret file 
+      ansible.builtin.copy:
+        src: pull-secret.txt
+        dest: /etc/crio/openshift-pull-secret
+
+    # Start Microshift
+    - name: Make sure a service unit is running and enabled
+      ansible.builtin.systemd:
+        state: started
+        name: microshift.service
+        enabled: true
+
+    # Set kubeconfig
+    - name: Create a directory if it does not exist
+      ansible.builtin.file:
+        path: /home/ec2-user/.kube
+        state: directory
+        mode: '0755'
+      become: false
+
+    - name: Copy kube config
+      ansible.builtin.copy:
+        src: /var/lib/microshift/resources/kubeadmin/kubeconfig
+        dest: /home/ec2-user/.kube/config
+        remote_src: true    
