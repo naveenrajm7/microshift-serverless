@@ -19,7 +19,7 @@
         auto_attach: true
 
     # Manage Repos
-    - name: Run command 
+    - name: Run Command Manage repo via RHSM
       ansible.builtin.command: subscription-manager config --rhsm.manage_repos=1
 
     - name: Install the latest version of Firewall and lvm2
@@ -44,7 +44,7 @@
         pvresize: true
 
     # Start firewall
-    - name: Make sure a service unit is running and enabled
+    - name: Make sure a firewall service unit is running and enabled
       ansible.builtin.systemd:
         state: started
         name: firewalld
@@ -68,7 +68,7 @@
         immediate: true
 
     # Enable microshift packages
-    - name: Enable a RHSM repository
+    - name: Enable Microshift repository
       community.general.rhsm_repository:
         name: 
           - rhocp-4.13-for-rhel-9-x86_64-rpms
@@ -94,7 +94,7 @@
         dest: /etc/crio/openshift-pull-secret
 
     # Start Microshift
-    - name: Make sure a service unit is running and enabled
+    - name: Make sure Microshift service unit is running and enabled
       ansible.builtin.systemd:
         state: started
         name: microshift.service

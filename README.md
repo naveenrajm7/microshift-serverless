@@ -1,25 +1,15 @@
-# MicroShift
+# MicroShift Serverless
 
-Attempt to install microshift
+Attempt to install knative in Microshift
 
 ## AWS
 
-RHEL 8.7 on t3.small
-with 10 GB disk
-AMI ami-08900fdabfe86d539
-
-
-[Community Docs](https://github.com/openshift/microshift/blob/main/docs/getting_started.md)
-
-[RedHat Docs](https://access.redhat.com/documentation/en-us/red_hat_build_of_microshift/4.12/html/installing/microshift-install-rpm)
-
-
+x86_64 - t3 instance family
+ARM - t4g instance family
 
 ## Vagrant 
 
-Not supported , failed with errors
-
-
+Microshift not supported in RHEL vagrant boxes, failed with errors
 
 
 ## Terraform Commands
@@ -39,7 +29,17 @@ terraform destroy
 ssh -i priv.cer ec2-user@<public-ip>
 ```
 
-## RHEL on AWS
+## Ansible commands 
+
+```bash
+ansible-playbook -i <public-ip>, playbook.yml 
+```
+
+## Resources
 
 [RHEL Subs in EC2](https://repost.aws/questions/QUU_yAGxzgRlygZo49LBYQfw/redhat-instances-on-ec2)
 [RHEL AMI in AWS](https://access.redhat.com/solutions/15356)
+[Microshift Community Docs](https://github.com/openshift/microshift/blob/main/docs/getting_started.md)
+[Microshift RedHat Docs](https://access.redhat.com/documentation/en-us/red_hat_build_of_microshift/4.12/html/installing/microshift-install-rpm)
+[Knative Serving](https://github.com/knative/serving)
+[Openshift Knative](https://github.com/openshift-knative/serverless-operator)
