@@ -71,8 +71,8 @@
     - name: Enable a RHSM repository
       community.general.rhsm_repository:
         name: 
-          - rhocp-4.13-for-rhel-9-aarch64-rpms
-          - fast-datapath-for-rhel-9-aarch64-rpms
+          - rhocp-4.13-for-rhel-9-x86_64-rpms
+          - fast-datapath-for-rhel-9-x86_64-rpms
 
     # Install microshift packages
     - name: Install the Microshift and Openshift-Clients
