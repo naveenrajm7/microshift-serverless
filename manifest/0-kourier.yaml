@@ -629,7 +629,7 @@ spec:
             - --log-level info
           command:
             - /usr/local/bin/envoy
-          image: docker.io/envoyproxy/envoy:v1.23-latest
+          image: quay.io/maistra-dev/proxyv2-ubi8:2.3-latest
           name: kourier-gateway
           ports:
             - name: http2-external
