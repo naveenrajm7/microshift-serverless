@@ -16,10 +16,10 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: kourier-system
+  name: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
 ---
@@ -41,12 +41,12 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: kourier-bootstrap
-  namespace: kourier-system
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 data:
   envoy-bootstrap.yaml: |
     dynamic_resources:
@@ -163,12 +163,12 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-kourier
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 data:
   _example: |
     ################################
@@ -250,12 +250,12 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: net-kourier
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -265,7 +265,7 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 rules:
   - apiGroups: [""]
     resources: ["events"]
@@ -297,7 +297,7 @@ metadata:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -305,7 +305,7 @@ roleRef:
 subjects:
   - kind: ServiceAccount
     name: net-kourier
-    namespace: knative-serving
+    namespace: knative-serving-ingress
 ---
 # Copyright 2020 The Knative Authors
 #
@@ -325,12 +325,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: net-kourier-controller
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 spec:
   strategy:
     type: RollingUpdate
@@ -365,9 +365,13 @@ spec:
             - name: METRICS_DOMAIN
               value: "knative.dev/samples"
             - name: KOURIER_GATEWAY_NAMESPACE
-              value: "kourier-system"
+              value: "knative-serving-ingress"
             - name: ENABLE_SECRET_INFORMER_FILTERING_BY_CERT_UID
               value: "false"
+            - name: KOURIER_HTTPOPTION_DISABLED
+              value: "true"
+            - name: SERVING_NAMESPACE
+              value: "knative-serving"
           ports:
           - name: http2-xds
             containerPort: 18000
@@ -403,12 +407,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: net-kourier-controller
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 spec:
   ports:
     - name: grpc-xds
@@ -437,12 +441,12 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: 3scale-kourier-gateway
-  namespace: kourier-system
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 spec:
   strategy:
     type: RollingUpdate
@@ -542,12 +546,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kourier
-  namespace: kourier-system
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 spec:
   ports:
     - name: http2
@@ -566,12 +570,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: kourier-internal
-  namespace: kourier-system
+  namespace: knative-serving-ingress
   labels:
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/component: net-kourier
     app.kubernetes.io/version: "release-v1.9"
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
 spec:
   ports:
     - name: http2
@@ -604,9 +608,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-logging
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
     app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.9"
@@ -631,9 +635,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-network
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
     app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.9"
@@ -658,9 +662,9 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: config-observability
-  namespace: knative-serving
+  namespace: knative-serving-ingress
   labels:
-    app.kubernetes.io/name: knative-serving
+    app.kubernetes.io/name: knative-serving-ingress
     app.kubernetes.io/component: net-kourier
     networking.knative.dev/ingress-provider: kourier
     app.kubernetes.io/version: "release-v1.9"
