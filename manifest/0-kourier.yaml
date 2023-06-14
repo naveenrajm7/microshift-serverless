@@ -351,7 +351,7 @@ spec:
         app: net-kourier-controller
     spec:
       containers:
-        - image: TO_BE_REPLACED
+        - image: quay.io/openshift-knative/net-kourier-kourier:knative-v1.9
           name: controller
           env:
             - name: CERTS_SECRET_NAMESPACE
@@ -471,7 +471,7 @@ spec:
             - --log-level info
           command:
             - /usr/local/bin/envoy
-          image: TO_BE_REPLACED
+          image: quay.io/maistra-dev/proxyv2-ubi8:2.3-latest
           name: kourier-gateway
           ports:
             - name: http2-external
