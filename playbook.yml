@@ -115,4 +115,16 @@
         owner: ec2-user
         group: ec2-user
         mode: '0644'        
-        remote_src: true    
+        remote_src: true
+
+    - name: Copy Serving Manifest
+      ansible.builtin.copy:
+        src: "{{ item }}"
+        dest: /home/ec2-user/
+        owner: ec2-user
+        group: ec2-user
+        mode: '0644'
+      loop:
+        - manifest/0-kourier.yaml
+        - manifest/1-serving-crds.yaml
+        - manifest/2-serving-core.yaml

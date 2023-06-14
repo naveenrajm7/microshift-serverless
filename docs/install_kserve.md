@@ -1,5 +1,22 @@
 
 
+Using Openshift-Operator YAMLs
+```bash
+    9  vi crds.yaml
+   10  oc apply -f crds.yaml 
+   11  vi core.yaml
+   12  oc apply -f core.yaml 
+   13* vi kourier.yam
+   14  oc apply -f kourier.yaml 
+   15  kubectl patch configmap/config-network   --namespace knative-serving   --type merge   --patch '{"data":{"ingress-class":"kourier.ingress.networking.knative.dev"}}'
+   16  kubectl get pods -n knative-serving
+   17  kubectl --namespace kourier-system get service kourier
+   18  vi hello.yaml
+   19  oc apply -f hello.yaml
+```
+
+
+
 Openshift Way:
 OperatorGroup & Subscription (Operators) -> Serverless-Operator -> Knative Serving
 

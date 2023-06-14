@@ -30,14 +30,14 @@ variable "instance_key" {
 variable "instance_type" {
   description = "EC2 Instance type"
   type        = string
-  default     = "t3.xlarge" 
+  default     = "t3.medium" 
   # (Edge Device) 
   # "t4g.small" [2CPU , 2G RAM] arm64  Arm-based AWS Graviton2 processors.
-  #  "t3.small" [2CPU, 2G RAM]  x86
+  # "t3.small" [2CPU, 2G RAM]  x86
 
   # General purpose
-  # t3.xlarge  [4CPU, 4G RAM] x86
-  # t4g.xlarge [4CPU, 4G RAM] ARM
+  # t3.medium [2, 4], t3.xlarge  [4CPU, 16G RAM] x86
+  # t4g.medium [2, 4], t4g.xlarge [4CPU, 16G RAM] ARM
 }
 
 variable "instance_ami" {
