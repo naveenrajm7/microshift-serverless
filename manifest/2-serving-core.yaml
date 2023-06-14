@@ -5880,11 +5880,11 @@ spec:
         # https://github.com/knative/serving/issues/1625#issuecomment-511930023
         resources:
           requests:
-            cpu: 300m
-            memory: 60Mi
+            cpu: 150m
+            memory: 30Mi
           limits:
-            cpu: 1000m
-            memory: 600Mi
+            cpu: 500m
+            memory: 300Mi
 
         env:
         # Run Activator with GC collection when newly generated memory is 500%.
@@ -6050,11 +6050,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 50m
+            memory: 50Mi
           limits:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 500m
+            memory: 500Mi
 
         env:
         - name: POD_NAME
@@ -6190,11 +6190,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 50m
+            memory: 50Mi
           limits:
-            cpu: 1000m
-            memory: 1000Mi
+            cpu: 500m
+            memory: 500Mi
 
         env:
         - name: POD_NAME
@@ -6325,11 +6325,11 @@ spec:
 
         resources:
           requests:
-            cpu: 30m
-            memory: 40Mi
+            cpu: 15m
+            memory: 20Mi
           limits:
-            cpu: 300m
-            memory: 400Mi
+            cpu: 150m
+            memory: 200Mi
 
         env:
         - name: SYSTEM_NAMESPACE
@@ -6435,11 +6435,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 50m
+            memory: 50Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 250m
+            memory: 250Mi
 
         env:
         - name: POD_NAME
@@ -6641,11 +6641,11 @@ spec:
 
         resources:
           requests:
-            cpu: 100m
-            memory: 100Mi
+            cpu: 50m
+            memory: 50Mi
           limits:
-            cpu: 500m
-            memory: 500Mi
+            cpu: 250m
+            memory: 250Mi
 
         env:
         - name: POD_NAME
