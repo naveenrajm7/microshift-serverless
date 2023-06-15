@@ -5030,7 +5030,7 @@ data:
     #
     # This value will default to "enabled" in a future release,
     # probably Knative 1.10
-    secure-pod-defaults: "disabled"
+    secure-pod-defaults: "enabled"
 
     # Indicates whether multi container support is enabled
     #
