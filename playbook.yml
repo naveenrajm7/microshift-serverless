@@ -128,3 +128,4 @@
         - manifest/0-kourier.yaml
         - manifest/1-serving-crds.yaml
         - manifest/2-serving-core.yaml
+        - manifest/hello.yaml
