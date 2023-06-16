@@ -5009,6 +5009,7 @@ metadata:
   annotations:
     knative.dev/example-checksum: "d3565159"
 data:
+  secure-pod-defaults: "enabled"
   _example: |-
     ################################
     #                              #
@@ -5030,7 +5031,7 @@ data:
     #
     # This value will default to "enabled" in a future release,
     # probably Knative 1.10
-    secure-pod-defaults: "enabled"
+    secure-pod-defaults: "disabled"
 
     # Indicates whether multi container support is enabled
     #
