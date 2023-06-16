@@ -9,6 +9,9 @@ spec:
       # with and without
         autoscaling.knative.dev/minScale: "1"
     spec:
+      securityContext:
+        seccompProfile:
+          type: "RuntimeDefault"    
       containers:
         - image: docker.io/openshift/hello-openshift
           env:
