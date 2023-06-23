@@ -4439,7 +4439,7 @@ metadata:
 spec:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  image: quay.io/openshift-knative/knative-serving-queue:knative-v1.9
+  image: "{{ IMAGE_queue-proxy }}"
 ---
 # Copyright 2018 The Knative Authors
 #
@@ -4833,7 +4833,7 @@ metadata:
 data:
   # This is the Go import path for the binary that is containerized
   # and substituted here.
-  queue-sidecar-image: quay.io/openshift-knative/knative-serving-queue:knative-v1.9
+  queue-sidecar-image: "{{ IMAGE_queue-proxy }}"
   _example: |-
     ################################
     #                              #
@@ -5876,7 +5876,7 @@ spec:
       - name: activator
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-activator:knative-v1.9
+        image: "{{ IMAGE_activator }}"
 
         # The numbers are based on performance test results from
         # https://github.com/knative/serving/issues/1625#issuecomment-511930023
@@ -6048,7 +6048,7 @@ spec:
       - name: autoscaler
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-autoscaler:knative-v1.9
+        image: "{{ IMAGE_autoscaler }}"
 
         resources:
           requests:
@@ -6188,7 +6188,7 @@ spec:
       - name: controller
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-controller:knative-v1.9
+        image: "{{ IMAGE_controller__controller }}"
 
         resources:
           requests:
@@ -6323,7 +6323,7 @@ spec:
       - name: domain-mapping
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-domain-mapping:knative-v1.9
+        image: "{{ IMAGE_domain-mapping }}"
 
         resources:
           requests:
@@ -6433,7 +6433,7 @@ spec:
       - name: domainmapping-webhook
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-domain-mapping-webhook:knative-v1.9
+        image: "{{ IMAGE_domainmapping-webhook }}"
 
         resources:
           requests:
@@ -6639,7 +6639,7 @@ spec:
       - name: webhook
         # This is the Go import path for the binary that is containerized
         # and substituted here.
-        image: quay.io/openshift-knative/knative-serving-webhook:knative-v1.9
+        image: "{{ IMAGE_webhook__webhook }}"
 
         resources:
           requests:

@@ -1,0 +1,9 @@
+IMAGE_queue-proxy             : quay.io/naveenrajm/knative-serving-queue:v1.9-arm64
+IMAGE_activator               : quay.io/naveenrajm/knative-serving-activator:v1.9-arm64
+IMAGE_autoscaler              : quay.io/naveenrajm/knative-serving-autoscaler:v1.9-arm64
+IMAGE_controller__controller  : quay.io/naveenrajm/knative-serving-controller:v1.9-arm64
+IMAGE_webhook__webhook        : quay.io/naveenrajm/knative-serving-webhook:v1.9-arm64
+IMAGE_domain-mapping          : quay.io/naveenrajm/knative-serving-domain-mapping:v1.9-arm64
+IMAGE_domainmapping-webhook   : quay.io/naveenrajm/knative-serving-domain-mapping-webhook:v1.9-arm64
+IMAGE_kourier-gateway         : docker.io/envoyproxy/envoy:v1.23-latest@sha256:611bd61c3f6b8f4748030d99b09e2731a41318a29d513e6985f8a196a81d6270
+IMAGE_net-kourier-controller__controller: quay.io/naveenrajm/net-kourier-controller:v1.9-arm64
