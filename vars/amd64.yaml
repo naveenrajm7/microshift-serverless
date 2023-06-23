@@ -5,5 +5,5 @@ IMAGE_controller__controller  : quay.io/openshift-knative/knative-serving-contro
 IMAGE_webhook__webhook        : quay.io/openshift-knative/knative-serving-webhook:knative-v1.9
 IMAGE_domain-mapping          : quay.io/openshift-knative/knative-serving-domain-mapping:knative-v1.9
 IMAGE_domainmapping-webhook   : quay.io/openshift-knative/knative-serving-domain-mapping-webhook:knative-v1.9
-IMAGE_kourier-gateway         : quay.io/maistra-dev/proxyv2-ubi8:2.3-latest
+IMAGE_kourier-gateway         : docker.io/envoyproxy/envoy:v1.23-latest
 IMAGE_net-kourier-controller__controller: quay.io/openshift-knative/net-kourier-kourier:knative-v1.9
