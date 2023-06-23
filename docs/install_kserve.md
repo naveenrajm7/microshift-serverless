@@ -13,6 +13,13 @@ Using Openshift-Operator YAMLs
    17  kubectl --namespace kourier-system get service kourier
    18  vi hello.yaml
    19  oc apply -f hello.yaml
+
+   kubectl patch configmap/config-domain \
+      --namespace knative-serving \
+      --type merge \
+      --patch '{"data":{"example.com":""}}'
+
+   curl -H "Host: hello.default.example.com" http://198.18.60.10   
 ```
 
 
