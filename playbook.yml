@@ -4,7 +4,7 @@
   become_user: root
   become_method: sudo
   vars_files:
-    - vars/"{{ arch }}".yaml
+    - vars/{{ arch_type }}.yaml
   vars_prompt:
     - name: username
       prompt: What is your redhat username?

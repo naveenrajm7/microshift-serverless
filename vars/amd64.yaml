@@ -1,9 +1,9 @@
-IMAGE_queue-proxy             : quay.io/openshift-knative/knative-serving-queue:knative-v1.9
+IMAGE_queue_proxy             : quay.io/openshift-knative/knative-serving-queue:knative-v1.9
 IMAGE_activator               : quay.io/openshift-knative/knative-serving-activator:knative-v1.9
 IMAGE_autoscaler              : quay.io/openshift-knative/knative-serving-autoscaler:knative-v1.9
 IMAGE_controller__controller  : quay.io/openshift-knative/knative-serving-controller:knative-v1.9
 IMAGE_webhook__webhook        : quay.io/openshift-knative/knative-serving-webhook:knative-v1.9
-IMAGE_domain-mapping          : quay.io/openshift-knative/knative-serving-domain-mapping:knative-v1.9
-IMAGE_domainmapping-webhook   : quay.io/openshift-knative/knative-serving-domain-mapping-webhook:knative-v1.9
-IMAGE_kourier-gateway         : docker.io/envoyproxy/envoy:v1.23-latest
-IMAGE_net-kourier-controller__controller: quay.io/openshift-knative/net-kourier-kourier:knative-v1.9
+IMAGE_domain_mapping          : quay.io/openshift-knative/knative-serving-domain-mapping:knative-v1.9
+IMAGE_domainmapping_webhook   : quay.io/openshift-knative/knative-serving-domain-mapping-webhook:knative-v1.9
+IMAGE_kourier_gateway         : docker.io/envoyproxy/envoy:v1.23-latest
+IMAGE_net_kourier_controller__controller: quay.io/openshift-knative/net-kourier-kourier:knative-v1.9

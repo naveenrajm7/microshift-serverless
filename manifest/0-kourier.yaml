@@ -351,7 +351,7 @@ spec:
         app: net-kourier-controller
     spec:
       containers:
-        - image: "{{ IMAGE_net-kourier-controller__controller }}"
+        - image: "{{ IMAGE_net_kourier_controller__controller }}"
           name: controller
           env:
             - name: CERTS_SECRET_NAMESPACE
@@ -475,7 +475,7 @@ spec:
             - --log-level info
           command:
             - /usr/local/bin/envoy
-          image: "{{ IMAGE_kourier-gateway }}"
+          image: "{{ IMAGE_kourier_gateway }}"
           name: kourier-gateway
           ports:
             - name: http2-external
