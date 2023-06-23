@@ -120,7 +120,7 @@
         remote_src: true
 
     - name: Copy Serving Manifest
-      ansible.builtin.copy:
+      ansible.builtin.template:
         src: "{{ item }}"
         dest: /home/ec2-user/
         owner: ec2-user
