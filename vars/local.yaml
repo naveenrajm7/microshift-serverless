@@ -1,0 +1,8 @@
+user_name : mentee
+group_name : mentee
+
+
+device_name : /dev/sdb
+# sda2 is already part of rhel volume group
+pvs_name : [ "/dev/sda2" , "/dev/sdb1" ]
+

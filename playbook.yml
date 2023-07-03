@@ -5,6 +5,7 @@
   become_method: sudo
   vars_files:
     - vars/{{ arch_type }}.yaml
+    - vars/{{ target_env }}.yaml
   vars_prompt:
     - name: username
       prompt: What is your redhat username?
@@ -34,7 +35,7 @@
     # Create Disk, Volume, Volume group
     - name: Create a new primary partition for LVM
       community.general.parted:
-        device: /dev/nvme1n1
+        device: "{{ device_name }}"
         number: 1
         flags: [ lvm ]
         state: present
@@ -42,7 +43,7 @@
     - name: Create a volume group 
       community.general.lvg:
         vg: rhel
-        pvs: /dev/nvme1n1p1
+        pvs: "{{ pvs_name | join(',') }}"
         pvresize: true
 
     # Start firewall
@@ -105,7 +106,7 @@
     # Set kubeconfig
     - name: Create a directory if it does not exist
       ansible.builtin.file:
-        path: /home/ec2-user/.kube
+        path: /home/{{ user_name }}/.kube
         state: directory
         mode: '0755'
       become: false
@@ -113,18 +114,18 @@
     - name: Copy kube config
       ansible.builtin.copy:
         src: /var/lib/microshift/resources/kubeadmin/kubeconfig
-        dest: /home/ec2-user/.kube/config
-        owner: ec2-user
-        group: ec2-user
+        dest: /home/{{ user_name }}/.kube/config
+        owner: "{{ user_name }}"
+        group: "{{ group_name }}"
         mode: '0644'        
         remote_src: true
 
     - name: Copy Serving Manifest
       ansible.builtin.template:
         src: "{{ item }}"
-        dest: /home/ec2-user/
-        owner: ec2-user
-        group: ec2-user
+        dest: /home/{{ user_name }}/
+        owner: "{{ user_name }}"
+        group: "{{ group_name }}"
         mode: '0644'
       loop:
         - manifest/0-kourier.yaml

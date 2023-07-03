@@ -1,0 +1,5 @@
+user_name : ec2-user
+group_name : ec2-user
+
+device_name : /dev/nvme1n1
+pvs_name : [ "/dev/nvme1n1p1" ]

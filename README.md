@@ -2,17 +2,43 @@
 
 Attempt to install knative in Microshift
 
-## AWS
+
+## Environment
+
+
+### Vagrant 
+
+Microshift not supported in RHEL vagrant boxes.
+
+### VirtualBox VM
+
+Configs:
+* 2 CPU
+* 2 RAM
+* Storage
+    * 1 Primary Disk for root
+    * 1 Secondary Disk for pv of workloads
+* Networking 
+    * ```NAT``` for internet 
+    * ```Host-only``` to connect to VM locally
+    * Port forwarding 80 -> 80 ( to reach service from local)
+* Installation
+    * Minimal Install
+
+
+See [vbox](microshift.vbox) file for full configuration
+
+
+### AWS
+
 
 x86_64 - t3 instance family  
 ARM - t4g instance family  
 
-## Vagrant 
 
-Microshift not supported in RHEL vagrant boxes, failed with errors
+## Provisioning
 
-
-## Terraform Commands
+### Terraform Commands
 
 ```bash
 # first , to get all needed modules
@@ -29,10 +55,12 @@ terraform destroy
 ssh -i priv.cer ec2-user@<public-ip>
 ```
 
-## Ansible commands 
+
+## Installation 
+###  Ansible commands 
 
 ```bash
-ansible-playbook -i <public-ip>, playbook.yml 
+ansible-playbook -i 192.168.56.103,  playbook.yml --extra-vars "arch_type=amd64 target_env=local" -kK
 ```
 
 ## Resources
