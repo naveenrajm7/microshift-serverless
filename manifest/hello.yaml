@@ -13,7 +13,7 @@ spec:
         seccompProfile:
           type: "RuntimeDefault"    
       containers:
-        - image: docker.io/openshift/hello-openshift
+        - image: "{{ IMAGE_hello_openshift }}"
           env:
             - name: RESPONSE 
               value: "Hello Serverless!"

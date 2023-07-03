@@ -7,3 +7,4 @@ IMAGE_domain_mapping          : quay.io/openshift-knative/knative-serving-domain
 IMAGE_domainmapping_webhook   : quay.io/openshift-knative/knative-serving-domain-mapping-webhook:knative-v1.9
 IMAGE_kourier_gateway         : docker.io/envoyproxy/envoy:v1.23-latest
 IMAGE_net_kourier_controller__controller: quay.io/openshift-knative/net-kourier-kourier:knative-v1.9
+IMAGE_hello_openshift         : docker.io/openshift/hello-openshift

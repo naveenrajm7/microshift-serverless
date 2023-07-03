@@ -7,3 +7,4 @@ IMAGE_domain_mapping          : quay.io/naveenrajm/knative-serving-domain-mappin
 IMAGE_domainmapping_webhook   : quay.io/naveenrajm/knative-serving-domain-mapping-webhook:v1.9-arm64
 IMAGE_kourier_gateway         : docker.io/envoyproxy/envoy:v1.23-latest@sha256:611bd61c3f6b8f4748030d99b09e2731a41318a29d513e6985f8a196a81d6270
 IMAGE_net_kourier_controller__controller: quay.io/naveenrajm/net-kourier-controller:v1.9-arm64
+IMAGE_hello_openshift         : quay.io/naveenrajm/hello-openshift:arm64
