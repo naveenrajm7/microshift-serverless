@@ -30,20 +30,20 @@ variable "instance_key" {
 variable "instance_type" {
   description = "EC2 Instance type"
   type        = string
-  default     = "t3.medium" 
+  default     = "t4g.medium" 
   # (Edge Device) 
   # "t4g.small" [2CPU , 2G RAM] arm64  Arm-based AWS Graviton2 processors.
   # "t3.small" [2CPU, 2G RAM]  x86
 
   # General purpose
-  # t3.medium [2, 4], t3.xlarge  [4CPU, 16G RAM] x86
-  # t4g.medium [2, 4], t4g.xlarge [4CPU, 16G RAM] ARM
+  # t3.medium [2, 4], t3.xlarge  [4CPU, 16G RAM] x86  $0.1016
+  # t4g.medium [2, 4], t4g.xlarge [4CPU, 16G RAM] ARM $0.0936
 }
 
 variable "instance_ami" {
   type        = string
   description = "The id of the machine image (AMI) to use for the server."
-  default     = "ami-026ebd4cfe2c043b2"
+  default     = "ami-03d6a5256a46c9feb"
   # RHEL 9.2 : "ami-026ebd4cfe2c043b2"  x86_64 , "ami-03d6a5256a46c9feb"  arm64
   # RHEL 8.7 : "ami-08900fdabfe86d539"  x86_64 ,  "ami-00ed1846dde481e81" arm64 [us east 1]
 

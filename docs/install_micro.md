@@ -18,6 +18,7 @@ sudo dnf install -y firewalld lvm2
 # (lsblk : to get name blocks)
 # https://repost.aws/knowledge-center/create-lv-on-ebs-partition
   # ( use 'w' to save config)
+# Create new disk 
  sudo gdisk /dev/nvme1n1   # n, 1, , , 8e00 , w, Y
   lsblk
   sudo pvcreate /dev/nvme1n1p1
@@ -118,100 +119,24 @@ sudo dnf install -y microshift openshift-clients
 
 
 
-
-
-
-```
-[ec2-user@ip-198-18-60-10 ~]$ cat /etc/*release*
-NAME="Red Hat Enterprise Linux"
-VERSION="8.7 (Ootpa)"
-ID="rhel"
-ID_LIKE="fedora"
-VERSION_ID="8.7"
-PLATFORM_ID="platform:el8"
-PRETTY_NAME="Red Hat Enterprise Linux 8.7 (Ootpa)"
-ANSI_COLOR="0;31"
-CPE_NAME="cpe:/o:redhat:enterprise_linux:8::baseos"
-HOME_URL="https://www.redhat.com/"
-DOCUMENTATION_URL="https://access.redhat.com/documentation/red_hat_enterprise_linux/8/"
-BUG_REPORT_URL="https://bugzilla.redhat.com/"
-
-REDHAT_BUGZILLA_PRODUCT="Red Hat Enterprise Linux 8"
-REDHAT_BUGZILLA_PRODUCT_VERSION=8.7
-REDHAT_SUPPORT_PRODUCT="Red Hat Enterprise Linux"
-REDHAT_SUPPORT_PRODUCT_VERSION="8.7"
-Red Hat Enterprise Linux release 8.7 (Ootpa)
-Red Hat Enterprise Linux release 8.7 (Ootpa)
-cpe:/o:redhat:enterprise_linux:8::baseos
-[ec2-user@ip-198-18-60-10 ~]$ 
-
-[ec2-user@ip-198-18-60-10 ~]$ lscpu
-Architecture:        x86_64
-CPU op-mode(s):      32-bit, 64-bit
-Byte Order:          Little Endian
-CPU(s):              2
-On-line CPU(s) list: 0,1
-Thread(s) per core:  2
-Core(s) per socket:  1
-Socket(s):           1
-NUMA node(s):        1
-Vendor ID:           GenuineIntel
-CPU family:          6
-Model:               85
-Model name:          Intel(R) Xeon(R) Platinum 8259CL CPU @ 2.50GHz
-Stepping:            7
-CPU MHz:             2499.996
-BogoMIPS:            4999.99
-Hypervisor vendor:   KVM
-Virtualization type: full
-L1d cache:           32K
-L1i cache:           32K
-L2 cache:            1024K
-L3 cache:            36608K
-NUMA node0 CPU(s):   0,1
-Flags:               fpu vme de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ss ht syscall nx pdpe1gb rdtscp lm constant_tsc rep_good nopl xtopology nonstop_tsc cpuid tsc_known_freq pni pclmulqdq ssse3 fma cx16 pcid sse4_1 sse4_2 x2apic movbe popcnt tsc_deadline_timer aes xsave avx f16c rdrand hypervisor lahf_lm abm 3dnowprefetch invpcid_single pti fsgsbase tsc_adjust bmi1 avx2 smep bmi2 erms invpcid mpx avx512f avx512dq rdseed adx smap clflushopt clwb avx512cd avx512bw avx512vl xsaveopt xsavec xgetbv1 xsaves ida arat pku ospke
-```
-
-
-[MicrShift Getting Started](https://github.com/openshift/microshift/blob/main/docs/getting_started.md)
-
-[RHEL Microshift](https://access.redhat.com/documentation/en-us/red_hat_build_of_microshift)
-With developer subscription
-
-
-
-ARM Error
+# Local Machine
 
 ```bash
-Error: 'rhocp-4.12-for-rhel-8-aarch64-rpms' does not match a valid repository ID. Use "subscription-manager repos --list" to see valid repositories.
-Error: 'fast-datapath-for-rhel-8-aarch64-rpms' does not match a valid repository ID. Use "subscription-manager repos --list" to see valid repositories.
-```
 
+# install gdisk 
 
+# Create primary partition for unclaimed space
+sudo gdisk
+# Create physical volume 
+sudo pvcreate /dev/sda3
 
+# Add new volume to vg
+sudo vgextend rhel /dev/sda3
 
-9.0 Error
-```bash
-8:28:56.479439   16602 pod_workers.go:965] "Error syncing pod, skipping" err="failed to \"StartContainer\" for \"service-ca-controller\" with CrashLoopBackOf>
-8:29:04.478472   16602 scope.go:115] "RemoveContainer" containerID="9136a5c534f8f0a4ce4f133bb7219c60765870f357e4a914daa282a117d836d4"
-8:29:04.479273   16602 pod_workers.go:965] "Error syncing pod, skipping" err="failed to \"StartContainer\" for \"router\" with CrashLoopBackOff: \"back-off 5>
-8:29:07.870032   16602 reconciler_common.go:228] "operationExecutor.MountVolume started for volume \"metrics-tls\" (UniqueName: \"kubernetes.io/secret/44b498>
-8:29:07.870205   16602 secret.go:194] Couldn't get secret openshift-dns/dns-default-metrics-tls: secret "dns-default-metrics-tls" not found
-8:29:07.870270   16602 nestedpendingoperations.go:348] Operation for "{volumeName:kubernetes.io/secret/44b4986a-e8ff-4160-a923-a1300f579260-metrics-tls podNa>
-8:29:07.899449   16602 kubelet.go:1841] "Unable to attach or mount volumes for pod; skipping pod" err="unmounted volumes=[metrics-tls], unattached volumes=[c>
-8:29:07.899496   16602 pod_workers.go:965] "Error syncing pod, skipping" err="unmounted volumes=[metrics-tls], unattached volumes=[config-volume kube-api-acc>
-8:29:10.478880   16602 scope.go:115] "RemoveContainer" containerID="33e4a4270680739af9788e1cb8b845032fcfcefbb27889da7b11d2852b037ded"
-8:29:10.479291   16602 pod_workers.go:965] "Error syncing pod, skipping" err="failed to \"StartContainer\" for \"service-ca-controller\" with CrashLoopBackOf>
+# If size is issue
+sudo pvresize /dev/sda3
 
 ```
 
 
-```
-  Type     Reason       Age                  From               Message
-  ----     ------       ----                 ----               -------
-  Normal   Scheduled    16m                  default-scheduler  Successfully assigned openshift-dns/dns-default-5h7v9 to ip-198-18-60-10.ec2.internal
-  Warning  FailedMount  6m33s (x3 over 14m)  kubelet            Unable to attach or mount volumes: unmounted volumes=[metrics-tls], unattached volumes=[config-volume kube-api-access-blmdj metrics-tls]: timed out waiting for the condition
-  Warning  FailedMount  4m29s                kubelet            Unable to attach or mount volumes: unmounted volumes=[metrics-tls], unattached volumes=[kube-api-access-blmdj metrics-tls config-volume]: timed out waiting for the condition
-  Warning  FailedMount  27s (x16 over 16m)   kubelet            MountVolume.SetUp failed for volume "metrics-tls" : secret "dns-default-metrics-tls" not found
-  Warning  FailedMount  23s (x4 over 10m)    kubelet            Unable to attach or mount volumes: unmounted volumes=[metrics-tls], unattached volumes=[metrics-tls config-volume kube-api-access-blmdj]: timed out waiting for the condition
-```
+[Add new partition to LVM](https://www.krenger.ch/blog/linux-lvm-how-to-adding-a-new-partition/)
