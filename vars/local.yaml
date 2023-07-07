@@ -1,8 +1,11 @@
+remote_user : mentee
+
 user_name : mentee
 group_name : mentee
 
-
-device_name : /dev/sdb
-# sda2 is already part of rhel volume group
-pvs_name : [ "/dev/sda2" , "/dev/sdb1" ]
-
+# Please check your VM for the name
+# Ideally this is the extra Disk that is present in VM for Volume configuration
+device_name : /dev/vdb
+# if sda2 is already part of rhel volume group, add sda2 here 
+# pvs_name : [ "/dev/sda2" , "/dev/sdb1" ]
+pvs_name : [ "/dev/vdb1" ]
