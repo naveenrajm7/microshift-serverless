@@ -1,0 +1,27 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-microshift
+  labels: 
+    name: hello-microshift 
+spec:
+  securityContext:
+    seccompProfile:
+      type: "RuntimeDefault"    
+  containers:
+    - name: hello
+      image: "{{ IMAGE_hello_openshift }}"
+      ports:
+        - containerPort: 8080
+          protocol: "TCP"
+      env:
+        - name: RESPONSE 
+          value: "Hello Microshift!"
+      securityContext:
+        allowPrivilegeEscalation: false
+        runAsNonRoot: true
+        seccompProfile: 
+          type: "RuntimeDefault"
+        capabilities:
+          drop: ["ALL"]
+# Add seccomp for queue proxy container
