@@ -25,9 +25,10 @@ Kourier will not be exposed outside cluster
 ### Make Openshift Router as NodePort
 
 ```bash
-oc expose deployment router-default --type NodePort --name router-external-default  --external-ip=192.168.66.3  -n openshift-ingress
+oc expose deployment router-default --type NodePort --name router-external-default  --external-ip=192.168.68.2  -n openshift-ingress
 
-naveenrajm@Naveenrajs-Mac-mini ~ % curl -H "Host: hello-microshift-default.apps.example.com" http://192.168.66.3    
+# Testing example route
+naveenrajm@Naveenrajs-Mac-mini ~ % curl -H "Host: hello-microshift-default.apps.example.com" http://192.168.68.2    
 Hello Microshift!
 ```
 
