@@ -63,6 +63,11 @@ ssh -i priv.cer ec2-user@<public-ip>
 ansible-playbook -i 192.168.56.103,  playbook.yml --extra-vars "arch_type=amd64 target_env=local" -kK
 ```
 
+
+## Credits
+
+This project was done as part of [LFX Mentorship program - Term 02 Jun-Aug](https://mentorship.lfx.linuxfoundation.org/project/830eb064-cf8a-4a8e-bba3-97d429a6ca79). Check here for project [mid-term](docs/midterm-report.md) report
+
 ## Resources
 
 * [RHEL Subs in EC2](https://repost.aws/questions/QUU_yAGxzgRlygZo49LBYQfw/redhat-instances-on-ec2)  
