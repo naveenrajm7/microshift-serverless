@@ -1,0 +1,7 @@
+IMAGE_queue_proxy             : quay.io/naveenrajm/queue:v1.10
+IMAGE_activator               : quay.io/naveenrajm/activator:v1.10
+IMAGE_autoscaler              : quay.io/naveenrajm/autoscaler:v1.10
+IMAGE_controller__controller  : quay.io/naveenrajm/controller:v1.10
+IMAGE_webhook__webhook        : quay.io/naveenrajm/webhook:v1.10
+IMAGE_domain_mapping          : quay.io/naveenrajm/domain-mapping:v1.10
+IMAGE_domainmapping_webhook   : quay.io/naveenrajm/domain-mapping-webhook:v1.10

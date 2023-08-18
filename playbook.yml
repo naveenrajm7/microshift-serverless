@@ -4,6 +4,7 @@
   become_user: root
   become_method: sudo
   vars_files:
+    - vars/common.yaml
     - vars/{{ arch_type }}.yaml
     - vars/{{ target_env }}.yaml
   vars_prompt:
