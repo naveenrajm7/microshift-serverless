@@ -19,7 +19,7 @@ Using Openshift-Operator YAMLs
       --type merge \
       --patch '{"data":{"example.com":""}}'
 
-   curl -H "Host: hello.default.example.com" http://198.18.60.10   
+   curl -H "Host: hello.default.example.com" <kourier-external-ip>   
 ```
 
 

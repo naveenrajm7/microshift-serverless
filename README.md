@@ -3,6 +3,18 @@
 Attempt to install knative in Microshift
 
 
+
+Micorshift          |   |  Knative
+:---------------:|:----------:|:-------------------------:
+![](img/microshift_logo_white_bg.png) | :heavy_plus_sign: |  ![](img/knative_logo_icon_247901.png)
+
+
+
+
+Platform : [Redhat Microshift](https://github.com/openshift/microshift)  
+Source   : [Openshift knative Serving (Mid-stream repo) ](https://github.com/openshift-knative/serving)  
+Images   : [Openshift Knative quay repository](https://quay.io/organization/openshift-knative)
+
 ## Environment
 
 

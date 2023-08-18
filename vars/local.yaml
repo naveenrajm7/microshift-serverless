@@ -5,7 +5,8 @@ group_name : mentee
 
 # Please check your VM for the name
 # Ideally this is the extra Disk that is present in VM for Volume configuration
-device_name : /dev/vdb
+device_name : /dev/sdb
+# device_name : /dev/vdb
 # if sda2 is already part of rhel volume group, add sda2 here 
-# pvs_name : [ "/dev/sda2" , "/dev/sdb1" ]
-pvs_name : [ "/dev/vda3","/dev/vdb1" ]
+pvs_name : [ "/dev/sda3" , "/dev/sdb1" ]
+# pvs_name : [ "/dev/vda3","/dev/vdb1" ]
